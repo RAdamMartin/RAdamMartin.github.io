@@ -1,0 +1,15 @@
+version: "3.9"
+services:
+  build:
+    image: jekyll/builder:pages
+    command: /bin/bash -c "bundle install && bundle exec jekyll build"
+    volumes:
+      - "./:/srv/jekyll" 
+  serve:
+    image: jekyll/jekyll:pages
+    command: /bin/bash -c "bundle install && bundle exec jekyll serve --livereload"
+    ports: 
+      - 35729:35729
+      - 4000:4000
+    volumes:
+      - "./:/srv/jekyll" 
